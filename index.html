@@ -336,30 +336,161 @@ box-shadow:0 15px 30px rgba(0,0,0,.4);
 
 }
 
-@media(max-width:900px){
+nav ul{
+padding-left:0;
+}
 
-.hero{
+.card .button{
 
-justify-content:center;
+display:block;
+margin-top:25px;
 text-align:center;
 
 }
 
-.hero-img{
+@media (max-width: 768px){
 
-margin-top:50px;
+body{
+overflow-x:hidden;
+}
 
-width:320px;
-height:320px;
+/* Navbar */
 
-font-size:90px;
+nav{
+padding:15px 20px;
+flex-direction:column;
+gap:15px;
+}
 
+.logo{
+font-size:24px;
+}
+
+nav ul{
+width:100%;
+justify-content:center;
+flex-wrap:wrap;
+gap:18px;
+}
+
+nav ul li{
+font-size:15px;
+}
+
+/* Hero */
+
+.hero{
+padding:140px 20px 70px;
+flex-direction:column-reverse;
+justify-content:center;
+text-align:center;
+gap:40px;
+min-height:auto;
+}
+
+.hero-text{
+max-width:100%;
 }
 
 .hero-text h1{
+font-size:36px;
+line-height:1.2;
+}
 
-font-size:45px;
+.hero-text p{
+font-size:15px;
+line-height:28px;
+}
 
+.hero-img{
+width:220px;
+height:220px;
+font-size:80px;
+}
+
+/* Button */
+
+.button{
+width:100%;
+padding:15px;
+text-align:center;
+}
+
+/* Section */
+
+section{
+padding:60px 20px;
+}
+
+.title{
+font-size:30px;
+margin-bottom:35px;
+}
+
+/* Grid */
+
+.grid{
+grid-template-columns:1fr;
+gap:20px;
+}
+
+.card{
+padding:25px;
+}
+
+/* Harga */
+
+.price{
+font-size:28px;
+}
+
+/* Stats */
+
+.stats{
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+}
+
+.stat{
+padding:25px 15px;
+}
+
+.stat h2{
+font-size:30px;
+}
+
+/* Testimoni */
+
+.testi{
+grid-template-columns:1fr;
+}
+
+.testi .card{
+padding:25px;
+}
+
+/* Footer */
+
+footer{
+padding:30px 20px;
+}
+
+footer h2{
+font-size:24px;
+}
+
+footer p{
+font-size:14px;
+}
+
+/* WhatsApp */
+
+.whatsapp{
+width:55px;
+height:55px;
+right:18px;
+bottom:18px;
+font-size:24px;
 }
 
 }
@@ -440,7 +571,7 @@ Order Sekarang
 
 </section>
 
-<section id="harga">
+<section id="layanan">
 
 <h2 class="title">Layanan Kami</h2>
 
@@ -497,6 +628,16 @@ Order Sekarang
 <h2 class="title">Daftar Harga</h2>
 
 <div class="grid">
+
+<div class="card">
+<h3>Gm ➜ Epic</h3>
+<div class="price">Rp150K</div>
+
+<div class="feature">✔ Aman</div>
+<div class="feature">✔ Proses cepat</div>
+<div class="feature">✔ Estimasi Kurang Dari 1 Hari</div>
+
+</div>
 
 <div class="card">
 <h3>Epic ➜ Legend</h3>
