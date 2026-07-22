@@ -200,47 +200,43 @@ document.querySelectorAll(".button").forEach(button => {
 
 
 /* =====================================
-   ACTIVE NAVBAR (FIX BUG)
+   ACTIVE NAVBAR
 ===================================== */
 
-const sections = document.querySelectorAll("section, footer");
+const sections = document.querySelectorAll("section[id], footer[id]");
 const navLinks = document.querySelectorAll("nav a");
 
-function activeMenu(){
+function activeMenu() {
 
     let current = "";
 
-    // Kalau sudah mentok paling bawah
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 5){
-
+    // kalau mentok paling bawah
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 5) {
         current = "kontak";
+    } else {
 
-    }else{
+        sections.forEach(section => {
 
-        sections.forEach(section=>{
+            const top = section.offsetTop - 120;
+            const height = section.offsetHeight;
 
-            const top = section.offsetTop - 150;
-            const bottom = top + section.offsetHeight;
-
-            if(window.scrollY >= top && window.scrollY < bottom){
-
-                current = section.getAttribute("id");
-
+            if (
+                window.scrollY >= top &&
+                window.scrollY < top + height
+            ) {
+                current = section.id;
             }
 
         });
 
     }
 
-    navLinks.forEach(link=>{
+    navLinks.forEach(link => {
 
-        link.classList.remove("active");
-
-        if(link.getAttribute("href") === "#" + current){
-
-            link.classList.add("active");
-
-        }
+        link.classList.toggle(
+            "active",
+            link.getAttribute("href") === "#" + current
+        );
 
     });
 
