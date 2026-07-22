@@ -1,23 +1,22 @@
-/* ==========================
-   NAVBAR SCROLL
-========================== */
+/* =====================================
+   JOKVET80 - SCRIPT.JS
+===================================== */
 
-const navbar = document.querySelector("nav");
 
-/* ==========================
+/* =====================================
    NAVBAR SCROLL
-========================== */
+===================================== */
 
 const navbar = document.querySelector("nav");
 
 window.addEventListener("scroll", () => {
 
-    if(window.scrollY > 50){
+    if (window.scrollY > 50) {
 
         navbar.style.background = "rgba(8,17,31,.97)";
         navbar.style.boxShadow = "0 10px 30px rgba(0,0,0,.35)";
 
-    }else{
+    } else {
 
         navbar.style.background = "rgba(8,17,31,.85)";
         navbar.style.boxShadow = "none";
@@ -27,385 +26,220 @@ window.addEventListener("scroll", () => {
 });
 
 
-/* ==========================
+/* =====================================
    SMOOTH SCROLL
-========================== */
+===================================== */
 
-document.querySelectorAll('nav a').forEach(link=>{
+document.querySelectorAll("nav a").forEach(link => {
 
-link.addEventListener("click",function(e){
+    link.addEventListener("click", function(e) {
 
-const target=document.querySelector(this.getAttribute("href"));
+        const target = document.querySelector(this.getAttribute("href"));
 
-if(target){
+        if (target) {
 
-e.preventDefault();
+            e.preventDefault();
 
-target.scrollIntoView({
+            target.scrollIntoView({
+                behavior: "smooth"
+            });
 
-behavior:"smooth"
+        }
 
-});
-
-}
-
-});
+    });
 
 });
 
 
-/* ==========================
+/* =====================================
    CARD ANIMATION
-========================== */
+===================================== */
 
 const cards = document.querySelectorAll(".card");
 
-const observer = new IntersectionObserver(entries=>{
+const observer = new IntersectionObserver(entries => {
 
-entries.forEach(entry=>{
+    entries.forEach(entry => {
 
-if(entry.isIntersecting){
+        if (entry.isIntersecting) {
 
-entry.target.style.opacity="1";
-entry.target.style.transform="translateY(0)";
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+
+        }
+
+    });
+
+}, {
+    threshold: .15
+});
+
+cards.forEach(card => {
+
+    card.style.opacity = "0";
+    card.style.transform = "translateY(50px)";
+    card.style.transition = ".6s";
+
+    observer.observe(card);
+
+});
+
+
+/* =====================================
+   COUNTER
+===================================== */
+
+const counters = document.querySelectorAll(".stat h2");
+
+const counterObserver = new IntersectionObserver(entries => {
+
+    entries.forEach(entry => {
+
+        if (!entry.isIntersecting) return;
+
+        const counter = entry.target;
+
+        const text = counter.innerText;
+
+        const target = parseInt(text.replace(/\D/g, ""));
+
+        let current = 0;
+
+        const update = () => {
+
+            const increment = Math.ceil(target / 80);
+
+            current += increment;
+
+            if (current > target)
+                current = target;
+
+            if (text.includes("%")) {
+
+                counter.innerText = current + "%";
+
+            } else if (text.includes("+")) {
+
+                counter.innerText = current + "+";
+
+            } else {
+
+                counter.innerText = current;
+
+            }
+
+            if (current < target) {
+
+                requestAnimationFrame(update);
+
+            }
+
+        }
+
+        update();
+
+        counterObserver.unobserve(counter);
+
+    });
+
+});
+
+counters.forEach(counter => {
+
+    counterObserver.observe(counter);
+
+});
+
+
+/* =====================================
+   WHATSAPP BUTTON
+===================================== */
+
+const wa = document.querySelector(".whatsapp");
+
+if (wa) {
+
+    wa.addEventListener("click", function(e) {
+
+        e.preventDefault();
+
+        window.open(
+
+            "https://wa.me/6281234567890?text=Halo%20Admin,%20Saya%20ingin%20order%20Jasa%20Joki%20Rank",
+
+            "_blank"
+
+        );
+
+    });
 
 }
 
-});
 
-});
-
-cards.forEach(card=>{
-
-card.style.opacity="0";
-card.style.transform="translateY(60px)";
-card.style.transition=".6s";
-
-observer.observe(card);
-
-});
-
-
-/* ==========================
-   COUNTER STATS
-========================== */
-
-const counters=document.querySelectorAll(".stat h2");
-
-counters.forEach(counter=>{
-
-const update=()=>{
-
-const target=parseInt(counter.innerText.replace(/\D/g,""));
-
-let current=parseInt(counter.dataset.count)||0;
-
-const increment=Math.ceil(target/80);
-
-if(current<target){
-
-current+=increment;
-
-if(current>target) current=target;
-
-counter.dataset.count=current;
-
-if(counter.innerText.includes("%")){
-
-counter.innerText=current+"%";
-
-}else if(counter.innerText.includes("+")){
-
-counter.innerText=current+"+";
-
-}else{
-
-counter.innerText=current;
-
-}
-
-requestAnimationFrame(update);
-
-}
-
-};
-
-update();
-
-});
-
-
-/* ==========================
+/* =====================================
    ORDER BUTTON
-========================== */
+===================================== */
 
-const orderButtons=document.querySelectorAll(".button");
+document.querySelectorAll(".button").forEach(button => {
 
-orderButtons.forEach(btn=>{
+    button.addEventListener("click", function(e) {
 
-btn.addEventListener("click",function(e){
+        e.preventDefault();
 
-e.preventDefault();
+        window.open(
 
-window.open(
+            "https://wa.me/6281234567890?text=Halo%20Admin,%20Saya%20ingin%20order%20Jasa%20Joki%20Rank",
 
-"https://wa.me/6281234567890?text=Halo%20Admin,%20saya%20ingin%20order%20jasa%20JokVet80",
+            "_blank"
 
-"_blank"
+        );
 
-);
-
-});
+    });
 
 });
 
 
-/* ==========================
-   FLOATING WHATSAPP
-========================== */
+/* =====================================
+   ACTIVE NAVBAR
+===================================== */
 
-const wa=document.querySelector(".whatsapp");
+const sections = document.querySelectorAll("section, footer");
+const navLinks = document.querySelectorAll("nav a");
 
-wa.addEventListener("click",function(e){
+function activeMenu() {
 
-e.preventDefault();
+    let current = "";
 
-window.open(
+    sections.forEach(section => {
 
-"https://wa.me/6281234567890?text=Halo%20Admin,%20saya%20ingin%20bertanya%20tentang%20Joki%20Rank",
+        const top = section.offsetTop - 150;
+        const height = section.offsetHeight;
 
-"_blank"
+        if (
+            window.scrollY >= top &&
+            window.scrollY < top + height
+        ) {
 
-);
+            current = section.getAttribute("id");
 
-});
+        }
 
+    });
 
-/* ==========================
-   ACTIVE MENU
-========================== */
+    navLinks.forEach(link => {
 
-const sections=document.querySelectorAll("section");
-const navLinks=document.querySelectorAll("nav a");
+        link.classList.remove("active");
 
-window.addEventListener("scroll",()=>{
+        if (link.getAttribute("href") === "#" + current) {
 
-let current="";
+            link.classList.add("active");
 
-sections.forEach(section=>{
+        }
 
-const sectionTop=section.offsetTop-120;
-
-if(scrollY>=sectionTop){
-
-current=section.getAttribute("id");
+    });
 
 }
 
-});
+window.addEventListener("scroll", activeMenu);
 
-navLinks.forEach(link=>{
-
-link.classList.remove("active");
-
-if(link.getAttribute("href")=="#"+current){
-
-link.classList.add("active");
-
-}
-
-});
-
-});
-
-
-/* ==========================
-   SMOOTH SCROLL
-========================== */
-
-document.querySelectorAll('nav a').forEach(link=>{
-
-link.addEventListener("click",function(e){
-
-const target=document.querySelector(this.getAttribute("href"));
-
-if(target){
-
-e.preventDefault();
-
-target.scrollIntoView({
-
-behavior:"smooth"
-
-});
-
-}
-
-});
-
-});
-
-
-/* ==========================
-   CARD ANIMATION
-========================== */
-
-const cards = document.querySelectorAll(".card");
-
-const observer = new IntersectionObserver(entries=>{
-
-entries.forEach(entry=>{
-
-if(entry.isIntersecting){
-
-entry.target.style.opacity="1";
-entry.target.style.transform="translateY(0)";
-
-}
-
-});
-
-});
-
-cards.forEach(card=>{
-
-card.style.opacity="0";
-card.style.transform="translateY(60px)";
-card.style.transition=".6s";
-
-observer.observe(card);
-
-});
-
-
-/* ==========================
-   COUNTER STATS
-========================== */
-
-const counters=document.querySelectorAll(".stat h2");
-
-counters.forEach(counter=>{
-
-const update=()=>{
-
-const target=parseInt(counter.innerText.replace(/\D/g,""));
-
-let current=parseInt(counter.dataset.count)||0;
-
-const increment=Math.ceil(target/80);
-
-if(current<target){
-
-current+=increment;
-
-if(current>target) current=target;
-
-counter.dataset.count=current;
-
-if(counter.innerText.includes("%")){
-
-counter.innerText=current+"%";
-
-}else if(counter.innerText.includes("+")){
-
-counter.innerText=current+"+";
-
-}else{
-
-counter.innerText=current;
-
-}
-
-requestAnimationFrame(update);
-
-}
-
-};
-
-update();
-
-});
-
-
-/* ==========================
-   ORDER BUTTON
-========================== */
-
-const orderButtons=document.querySelectorAll(".button");
-
-orderButtons.forEach(btn=>{
-
-btn.addEventListener("click",function(e){
-
-e.preventDefault();
-
-window.open(
-
-"https://wa.me/6281234567890?text=Halo%20Admin,%20saya%20ingin%20order%20jasa%20JokVet80",
-
-"_blank"
-
-);
-
-});
-
-});
-
-
-/* ==========================
-   FLOATING WHATSAPP
-========================== */
-
-const wa=document.querySelector(".whatsapp");
-
-wa.addEventListener("click",function(e){
-
-e.preventDefault();
-
-window.open(
-
-"https://wa.me/6281234567890?text=Halo%20Admin,%20saya%20ingin%20bertanya%20tentang%20Joki%20Rank",
-
-"_blank"
-
-);
-
-});
-
-
-/* ==========================
-   ACTIVE MENU
-========================== */
-
-const sections=document.querySelectorAll("section, footer");
-const navLinks=document.querySelectorAll("nav a");
-
-window.addEventListener("scroll",()=>{
-
-let current="";
-
-sections.forEach(section=>{
-
-const sectionTop=section.offsetTop-120;
-
-if(scrollY>=sectionTop){
-
-current=section.getAttribute("id");
-
-}
-
-});
-
-navLinks.forEach(link=>{
-
-link.classList.remove("active");
-
-if(link.getAttribute("href")=="#"+current){
-
-link.classList.add("active");
-
-}
-
-});
-
-});
+window.addEventListener("load", activeMenu);
