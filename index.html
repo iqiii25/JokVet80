@@ -81,9 +81,25 @@ gap:35px;
 
 nav a{
 
-text-decoration:none;
-color:white;
-transition:0.3s;
+position:relative;
+transition:.3s;
+}
+
+nav a::after{
+
+content:'';
+
+position:absolute;
+
+left:0;
+bottom:-8px;
+
+width:0%;
+height:2px;
+
+background:#33c3ff;
+
+transition:.3s;
 
 }
 
@@ -96,7 +112,12 @@ color:#33c3ff;
 nav a.active{
 
 color:#33c3ff;
-font-weight:600;
+
+}
+
+nav a.active::after{
+
+width:100%;
 
 }
 
