@@ -165,7 +165,7 @@ if (wa) {
 
         window.open(
 
-            "https://wa.me/6281234567890?text=Halo%20Admin,%20Saya%20ingin%20order%20Jasa%20Joki%20Rank",
+            "https://wa.me/6283184140131?text=Halo%20Admin,%20Saya%20ingin%20order%20Jasa%20Joki%20Rank",
 
             "_blank"
 
